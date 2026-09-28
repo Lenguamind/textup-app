@@ -1,4 +1,4 @@
-﻿export const en = {
+export const en = {
   premium: {
     unlockPower: "Unlock AI power",
     feat1: "Unrestricted image generation",
@@ -10,7 +10,7 @@
     month: "/mo",
     year: "/yr",
     save: "Save 33%",
-    subscribe: "Subscribe via Google Play",
+    subscribe: "Subscribe",
     processing: "Processing...",
     cancelInfo: "Recurring subscription. Cancel anytime.",
     success: "You're Premium!",

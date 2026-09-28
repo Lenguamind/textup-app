@@ -1,4 +1,4 @@
-﻿export const nl = {
+export const nl = {
   premium: {
     unlockPower: "Ontgrendel de kracht van AI",
     feat1: "Onbeperkte beeldgeneratie",
@@ -10,7 +10,7 @@
     month: "/maand",
     year: "/jaar",
     save: "Bespaar 33%",
-    subscribe: "Abonneren via Google Play",
+    subscribe: "Abonneren",
     processing: "Verwerken...",
     cancelInfo: "Terugkerend abonnement. Op elk moment opzegbaar.",
     success: "Je bent Premium!",

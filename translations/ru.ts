@@ -10,7 +10,7 @@ export const ru = {
     month: "/мес",
     year: "/год",
     save: "Экономия 33%",
-    subscribe: "Подписаться через Google Play",
+    subscribe: "Подписаться",
     processing: "Обработка...",
     cancelInfo: "Регулярная подписка. Отмените в любой момент.",
     success: "Вы Premium!",

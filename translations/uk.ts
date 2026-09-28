@@ -1,4 +1,4 @@
-﻿export const uk = {
+export const uk = {
 
   premium: {
 
@@ -22,7 +22,7 @@
 
     save: "Заощаджуйте 33%",
 
-    subscribe: "Підписатися через Google Play",
+    subscribe: "Підписатися",
 
     processing: "Обробка...",
 

@@ -10,7 +10,7 @@ export const ca = {
     month: "/mes",
     year: "/any",
     save: "Estalvia 33%",
-    subscribe: "Subscriure's via Google Play",
+    subscribe: "Subscriure's",
     processing: "Processant...",
     cancelInfo: "Subscripció recurrent. Es pot cancel·lar en qualsevol moment.",
     success: "Ets Premium!",

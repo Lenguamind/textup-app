@@ -1,4 +1,4 @@
-﻿export const pl = {
+export const pl = {
   premium: {
     unlockPower: "Odblokuj moc SI",
     feat1: "Nieograniczone generowanie obrazów",
@@ -10,7 +10,7 @@
     month: "/miesiąc",
     year: "/rok",
     save: "Oszczędź 33%",
-    subscribe: "Subskrybuj przez Google Play",
+    subscribe: "Subskrybuj",
     processing: "Przetwarzanie...",
     cancelInfo: "Subskrypcja odnawialna. Anuluj w dowolnym momencie.",
     success: "Jesteś Premium!",

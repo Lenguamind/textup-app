@@ -1,4 +1,4 @@
-﻿export const no = {
+export const no = {
   premium: {
     unlockPower: "Lås opp kraften i AI",
     feat1: "Ubegrenset bildegenerering",
@@ -10,7 +10,7 @@
     month: "/måned",
     year: "/år",
     save: "Spar 33%",
-    subscribe: "Abonner via Google Play",
+    subscribe: "Abonner",
     processing: "Behandler...",
     cancelInfo: "Løpende abonnement. Avbryt når som helst.",
     success: "Du er Premium!",

@@ -1,4 +1,4 @@
-﻿export const de = {
+export const de = {
   premium: {
     unlockPower: "Entsperre die Kraft der KI",
     feat1: "Unbegrenzte Bilderzeugung",
@@ -10,7 +10,7 @@
     month: "/Monat",
     year: "/Jahr",
     save: "Spar 33%",
-    subscribe: "Über Google Play abonnieren",
+    subscribe: "Abonnieren",
     processing: "Wird bearbeitet...",
     cancelInfo: "Wiederkehrendes Abonnement. Jederzeit kündbar.",
     success: "Du bist Premium!",

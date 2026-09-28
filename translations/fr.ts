@@ -1,4 +1,4 @@
-﻿export const fr = {
+export const fr = {
   premium: {
     unlockPower: "Débloquez la puissance de l'IA",
     feat1: "Génération d'images illimitée",
@@ -10,7 +10,7 @@
     month: "/mois",
     year: "/an",
     save: "Économisez 33%",
-    subscribe: "S'abonner via Google Play",
+    subscribe: "S'abonner",
     processing: "Traitement...",
     cancelInfo: "Abonnement récurrent. Annulez à tout moment.",
     success: "Vous êtes Premium !",
