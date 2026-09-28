@@ -15,6 +15,7 @@
     "@capacitor/android": "^8.3.0",
     "@capacitor/core": "^8.3.0",
     "@capacitor/filesystem": "^8.1.2",
+    "@capacitor/ios": "^8.5.2",
     "@capacitor/preferences": "^8.0.1",
     "@capacitor/share": "^8.0.1",
     "@google/genai": "^1.44.0",
@@ -41,6 +42,7 @@
     "vite": "^7.3.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^22.14.0",
     "@typescript-eslint/eslint-plugin": "^8.57.2",
