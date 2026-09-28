@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f1ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>TEXTUP! - Asistente de Escritura IA</title>
+    <script>
+      // Suprimir errors de WebSocket de Vite/HMR que són esperats en aquest entorn
+      (function() {
+        const originalError = console.error;
+        console.error = function(...args) {
+          if (args[0] && typeof args[0] === 'string' && args[0].includes('[vite] failed to connect to websocket')) {
+            return;
+          }
+          originalError.apply(console, args);
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (event.reason && (
+            (event.reason.message && event.reason.message.includes('WebSocket')) ||
+            (event.reason.toString && event.reason.toString().includes('WebSocket'))
+          )) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+      })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Outfit"', 'sans-serif'],
+              display: ['"Lexend"', 'sans-serif'],
+            },
+            colors: {
+              pop: {
+                bg: '#f4f1ff',
+                dark: '#0f172a',
+                purple: '#c084fc',
+                purpleLight: '#f3e8ff',
+                blue: '#38bdf8',
+                blueLight: '#e0f2fe',
+                green: '#4ade80',
+                greenLight: '#dcfce7',
+                yellow: '#facc15',
+                yellowLight: '#fef9c3',
+                pink: '#fb7185',
+                pinkLight: '#ffe4e6',
+                orange: '#fb923c'
+              },
+              brand: {
+                DEFAULT: '#4ade80',
+                dark: '#0f172a',
+                light: '#dcfce7',
+                bg: '#f4f1ff'
+              },
+              dark: '#0f172a',
+              comic: {
+                dark: '#0f172a',
+                yellow: '#facc15',
+                yellowText: '#854d0e',
+                blue: '#38bdf8',
+                blueText: '#0c4a6e',
+                purple: '#c084fc',
+                purpleText: '#581c87',
+                red: '#fb7185',
+                redText: '#881337'
+              }
+            },
+            boxShadow: {
+              'neo': '4px 4px 0px 0px #0f172a',
+              'neo-sm': '2px 2px 0px 0px #0f172a',
+              'neo-lg': '6px 6px 0px 0px #0f172a',
+              'neo-pressed': 'inset 4px 4px 0px 0px #0f172a',
+              'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+              'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+              'comic-soft': '4px 4px 0px 0px rgba(15, 23, 42, 0.1)'
+            },
+            animation: {
+              'bounce-slow': 'bounce 3s infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'slide-up': 'slideUp 0.5s ease-out forwards',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+              'shimmer': 'shimmer 2s linear infinite',
+              'progress-dash': 'progressDash 2s ease-in-out infinite',
+              'spin-slow': 'spin 3s linear infinite',
+              'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
+            },
+            keyframes: {
+              bounceSubtle: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-3px)' },
+              },
+              progressDash: {
+                '0%': { strokeDashoffset: '364.4' },
+                '50%': { strokeDashoffset: '91.1' },
+                '100%': { strokeDashoffset: '364.4' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '0 0' },
+                '100%': { backgroundPosition: '40px 0' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              pop: {
+                '0%': { transform: 'scale(0.8)', opacity: '0' },
+                '100%': { transform: 'scale(1)', opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #f4f1ff;
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 20px 20px;
+        color: #0f172a;
+        font-family: 'Outfit', sans-serif;
+        min-height: 100vh;
+        /* Handle safe areas */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

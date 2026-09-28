@@ -1,0 +1,8 @@
+{
+  "name": "TEXTUP! ",
+  "description": "TEXTUP! és una eina educativa innovadora dissenyada per ajudar estudiants i professors a millorar l'escriptura. Utilitza intel·ligència artificial per analitzar textos, detectar errors ortogràfics i gramaticals, i oferir suggeriments de millora personalitzats. Inclou funcions com el Detectiu Ortogràfic, el Laboratori Lingüístic i el Polidor de Veu, tot en un entorn gamificat i fàcil d'utilitzar.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

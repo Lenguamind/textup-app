@@ -1,0 +1,25 @@
+{
+  "name": "TEXTUP!",
+  "short_name": "TEXTUP!",
+  "description": "Assistent d'escriptura amb IA per a estudiants.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1ff",
+  "theme_color": "#f4f1ff",
+  "orientation": "portrait",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2620/2620539.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2620/2620539.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

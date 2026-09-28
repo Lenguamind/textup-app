@@ -1,0 +1,23 @@
+{
+  "appId": "com.textup.geroni4.app",
+  "appName": "TEXTUP!",
+  "webDir": "dist",
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "http",
+    "allowNavigation": [
+      "*.firebaseapp.com",
+      "*.googleapis.com",
+      "*.cloudfunctions.net",
+      "*.run.app"
+    ]
+  },
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": [
+        "google.com"
+      ]
+    }
+  }
+}
