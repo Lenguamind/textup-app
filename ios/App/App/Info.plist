@@ -72,5 +72,14 @@
     <string>TEXTUP! uses the microphone so you can record your voice and turn it into text.</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.908764198931-deaadn9ca34r77b0lc9ok56bab95t31v</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
