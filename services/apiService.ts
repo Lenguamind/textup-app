@@ -77,10 +77,17 @@ export const verifyAndroidPurchase = async (purchaseToken: string, productId: st
     const result = await validateFn({ userId, purchaseToken, productId });
     return result.data;
 };
-export const getUserStatus = async (uid?: string) => {
+
+export const verifyApplePurchase = async (transactionId: string, productId: string) => {
+    const userId = localStorage.getItem('textup_user_id');
+    const validateFn = httpsCallable(functions, 'validateSubscription');
+    const result = await validateFn({ userId, transactionId, productId, platform: 'ios' });
+    return result.data;
+};export const getUserStatus = async (uid?: string) => {
     const userId = uid || localStorage.getItem('textup_user_id');
     if (!userId) return null;
     const getUserStatusFn = httpsCallable(functions, 'getUserStatus');
     const result = await getUserStatusFn({ userId });
     return result.data;
 };
+

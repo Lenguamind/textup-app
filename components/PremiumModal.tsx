@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Crown, Check, X, ShieldCheck, Star, Loader2, RotateCcw } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { billingService, ProductId } from '../services/billingService';
@@ -75,7 +75,7 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
       const result = await billingService.purchase(prodId);
       
       if (result && (result as any).status === 'web_mode') {
-        setError("Per provar la passarel·la de pagament real de Google Play, has d'utilitzar l'App al mòbil.");
+        setError("Per provar la passarel·la de pagament real, has d'utilitzar l'App al mòbil.");
         setIsProcessing(false);
       } else {
         setIsProcessing(false);
@@ -242,3 +242,4 @@ const FeatureItem: React.FC<{ text: string, highlight?: boolean }> = ({ text, hi
 );
 
 export default PremiumModal;
+

@@ -1,6 +1,6 @@
 ﻿import { Capacitor } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
-import { verifyAndroidPurchase } from './apiService';
+import { verifyAndroidPurchase, verifyApplePurchase } from './apiService';
 
 const getPurchaseStore = () => {
   if (typeof (window as any).CdvPurchase !== 'undefined') {
@@ -22,6 +22,14 @@ const PREMIUM_STORAGE_KEY = 'is_premium_active';
 class BillingService {
   private initialized = false;
 
+  private getNativePlatformEnum() {
+    const CdvPurchase = (window as any).CdvPurchase;
+    if (!CdvPurchase?.Platform) return undefined;
+    return Capacitor.getPlatform() === 'ios'
+      ? CdvPurchase.Platform.APPLE_APPSTORE
+      : CdvPurchase.Platform.GOOGLE_PLAY;
+  }
+
   async initialize() {
     if (!Capacitor.isNativePlatform() || this.initialized) {
       return;
@@ -38,7 +46,7 @@ class BillingService {
 
       const CdvPurchase = (window as any).CdvPurchase;
       const subType = CdvPurchase?.ProductType?.PAID_SUBSCRIPTION || 'paid subscription';
-      const platform = CdvPurchase?.Platform?.GOOGLE_PLAY;
+      const platform = this.getNativePlatformEnum();
 
       store.register([
         { id: ProductId.MONTHLY, type: subType, platform: platform },
@@ -53,16 +61,19 @@ class BillingService {
         await this.setLocalPremiumStatus(true);
         window.dispatchEvent(new CustomEvent('user-premium-updated', { detail: true }));
 
-        const purchaseToken = transaction.purchaseToken || transaction.id;
         let productId = transaction.products ? transaction.products[0]?.id : null;
         if (!productId && transaction.id) productId = transaction.id;
 
-        if (purchaseToken) {
-          try {
-            await verifyAndroidPurchase(purchaseToken, productId);
-          } catch (error) {
-            console.error('Error verifying purchase:', error);
+        try {
+          if (Capacitor.getPlatform() === 'ios') {
+            const transactionId = transaction.purchaseId || transaction.id;
+            if (transactionId) await verifyApplePurchase(transactionId, productId);
+          } else {
+            const purchaseToken = transaction.purchaseToken || transaction.id;
+            if (purchaseToken) await verifyAndroidPurchase(purchaseToken, productId);
           }
+        } catch (error) {
+          console.error('Error verifying purchase:', error);
         }
       });
 
@@ -99,10 +110,7 @@ class BillingService {
       });
 
       if (store.initialize) {
-        let platformEnum = undefined;
-        if (CdvPurchase && CdvPurchase.Platform && CdvPurchase.Platform.GOOGLE_PLAY) {
-          platformEnum = CdvPurchase.Platform.GOOGLE_PLAY;
-        }
+        const platformEnum = this.getNativePlatformEnum();
         store.initialize(platformEnum ? [platformEnum] : []);
       } else if (store.update) {
         store.update();
@@ -142,7 +150,7 @@ class BillingService {
         return { status: 'error', message: 'Product not found' };
       }
 
-      const offer = product.offers?.[0];
+      const offer = product.getOffer ? product.getOffer() : product.offers?.[0];
       if (!offer) {
         console.error('BillingService: No offer found for product:', productId);
         return { status: 'error', message: 'No offer found' };
@@ -160,7 +168,9 @@ class BillingService {
     if (!Capacitor.isNativePlatform()) return;
     const store = getPurchaseStore();
     if (store) {
-      if (store.update) {
+      if (Capacitor.getPlatform() === 'ios' && store.restorePurchases) {
+        store.restorePurchases();
+      } else if (store.update) {
         store.update();
       } else if (store.refresh) {
         store.refresh();
@@ -172,6 +182,12 @@ class BillingService {
     if (!Capacitor.isNativePlatform()) return null;
     const store = getPurchaseStore();
     return store ? store.get(productId) : null;
+  }
+
+  getDisplayPrice(productId: ProductId): string | undefined {
+    const product = this.getProduct(productId);
+    if (!product) return undefined;
+    return product.pricing?.price || product.offers?.[0]?.pricingPhases?.[0]?.price;
   }
 }
 
